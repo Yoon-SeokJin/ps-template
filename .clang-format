@@ -1,0 +1,28 @@
+---
+  BasedOnStyle: Chromium
+  IndentWidth: 4
+---
+  Language: Cpp
+  AccessModifierOffset: -4
+  #AlignAfterOpenBracket: Align #default
+  #AlignArrayOfStructures doesn't work
+  #AlignConsecutiveAssignments: None #default
+  AlignConsecutiveMacros: Consecutive
+  #AlignEscapedNewlines: Left #default
+  #AlignOperands: Align #default
+  #AlignTrailingComments: true #default
+  #AllowAllArgumentsOnNextLine doesn't work
+  AllowShortIfStatementsOnASingleLine: true
+  AllowShortFunctionsOnASingleLine: Empty
+  AllowShortLambdasOnASingleLine: None
+  AllowShortLoopsOnASingleLine: false
+  ColumnLimit: 120
+  CommentPragmas: '^[^ ]'
+  ForEachMacros: ['rp', 'rpr', 'rpe']
+  #ForEachMacros: doesn't work
+  #IfMacros doesn't work
+  #IndentAccessModifiers doesn't work
+  IndentCaseLabels: false
+  #PointerAlignment: Left #default
+  #ReferenceAlignment: Left #default
+  #SortIncludes doesn't work
