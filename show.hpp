@@ -1,18 +1,28 @@
-template <typename E>
-void show(E e) {
-    cout << ' ' << e;
+#include <bits/stdc++.h>
+const std::string SHOW_MSG = "MSG|";
+bool leftmost = true;
+bool writeln = true;
+
+template <typename... E>
+void show(E... e);
+
+template <typename... E>
+void showAux(E... e) {
+    (cout << ... << (cout << ' ', e));
 }
 template <typename T1, typename T2>
-void show(pair<T1, T2> e) {
-    cout << e.first << ' ' << e.second << endl;
+void showAux(std::pair<T1, T2> e) {
+    cout << '(' << e.first << ',' << e.second << ')';
 }
-template <ranges::input_range R>
-void show(R r) {
+
+template <std::ranges::input_range R>
+void showAux(R r) {
     for (auto it = begin(r); it != end(r); ++it) {
         cout << setw(3);
+        writeln = false;
         show(*it);
+        writeln = true;
     }
-    cout << endl;
 }
 template <typename T>
 concept Adaptor = requires(T t) {
@@ -21,18 +31,30 @@ concept Adaptor = requires(T t) {
     t.empty();
 };
 template <Adaptor A>
-void show(A a) {
+void showAux(A a) {
     while (!a.empty()) {
         show(a.top());
         a.pop();
     }
-    cout << endl;
 }
 template <typename T>
-void show(queue<T> a) {
+void showAux(std::queue<T> a) {
     while (!a.empty()) {
         show(a.front());
         a.pop();
     }
-    cout << endl;
+}
+
+template <typename... E>
+void show(E... e) {
+    if (leftmost) {
+        cout << SHOW_MSG;
+        leftmost = false;
+    }
+    showAux(e...);
+    if (writeln) {
+        if (leftmost) cout << SHOW_MSG;
+        cout << endl;
+        leftmost = true;
+    }
 }
